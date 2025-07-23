@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI/ML Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Turquoise Theme */
+    :root {
+      --primary: #00CED1;
+      --secondary: #008B8B;
+      --accent: #40E0D0;
+      --dark: #0A1A2A;
+      --light: #E0F7FA;
+      --neon: #00F5FF;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated Neural Network Background */
+    .neural-network {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+      background: 
+        radial-gradient(circle at 20% 30%, var(--primary), transparent 70%),
+        radial-gradient(circle at 80% 70%, var(--accent), transparent 70%);
+    }
+
+    .neuron {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--neon);
+      border-radius: 50%;
+      box-shadow: 0 0 10px 2px var(--neon);
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    .connection {
+      position: absolute;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      height: 1px;
+      transform-origin: left center;
+      animation: connectionFlow 8s infinite linear;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    @keyframes connectionFlow {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+      100% { opacity: 0.3; }
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 4rem 0;
+    }
+
+    .hero-content {
+      width: 100%;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    .profile-container {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 2rem;
+    }
+
+    .profile-pic {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 30px rgba(0, 206, 209, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    .profile-glow {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      animation: glowPulse 4s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes glowPulse {
+      from { opacity: 0.3; transform: scale(0.95); }
+      to { opacity: 0.7; transform: scale(1.05); }
+    }
+
+    .tagline {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 1.5rem 0;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+    }
+
+    /* Sections */
+    .section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    }
+
+    /* About */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .skill-card {
+      background: rgba(0, 139, 139, 0.1);
+      border: 1px solid rgba(0, 206, 209, 0.3);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 206, 209, 0.2);
+      border-color: var(--primary);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    /* Projects & Achievements */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .project-card, .achievement-card {
+      background: rgba(0, 139, 139, 0.1);
+      border: 1px solid rgba(0, 206, 209, 0.3);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover, .achievement-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 206, 209, 0.3);
+    }
+
+    .project-card:before, .achievement-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 206, 209, 0.1), transparent);
+      z-index: -1;
+    }
+
+    .project-card h3, .achievement-card h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .project-card h3:after, .achievement-card h3:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      background: rgba(10, 26, 42, 0.8);
+      backdrop-filter: blur(5px);
+      margin-top: 4rem;
+    }
+
+    /* Interactive Console Effect */
+    .console-effect {
+      font-family: 'Courier New', monospace;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 5px;
+      border-left: 3px solid var(--primary);
+      margin: 2rem auto;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .console-effect:before {
+      content: '>>>';
+      position: absolute;
+      left: 10px;
+      top: 1rem;
+      color: var(--primary);
+    }
+
+    .console-text {
+      padding-left: 2rem;
+      border-right: 2px solid var(--primary);
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--primary); }
+    }
+
+    /* Scroll Indicator */
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--primary);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-20px) translateX(-50%); }
+      60% { transform: translateY(-10px) translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Dynamic Neural Network Background -->
+  <div class="neural-network" id="neuralNetwork"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="profile-container">
+          <div class="profile-glow"></div>
+          <img src="C:\Users\Advita\Downloads\Untitled design (1).png" alt="Your Photo" class="profile-pic">
+        </div>
+        <h1 class="tagline">I can speak to both humans and machines</h1>
+        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+          Data Scientist | AI/ML Researcher | Edupreneur & Speaker
+        </p>
+        
+        <div class="console-effect">
+          <p class="console-text" id="consoleText"></p>
+        </div>
+        
+        <div class="scroll-down">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M19 12l-7 7-7-7"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <p style="text-align: left;">
+         "𝗗𝗼 𝘄𝗵𝗮𝘁 𝘆𝗼𝘂 𝗹𝗼𝘃𝗲 𝗮𝗻𝗱 𝘆𝗼𝘂'𝗹𝗹 𝗻𝗲𝘃𝗲𝗿 𝗵𝗮𝘃𝗲 𝘁𝗼 𝘄𝗼𝗿𝗸 𝗮 𝗱𝗮𝘆 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗹𝗶𝗳𝗲." <br>
+
+        I'm Tejasvi R.A., a passionate individual who makes a name for herself wherever she goes. <br>
+
+        📊 Having a technical background, I aim to become a 𝗗𝗮𝘁𝗮 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿 in the near future. Working on new projects and participating in Hackathons is a newfound interest of mine! <br>
+
+        👩🏽‍🏫 Moving to the bigger picture, I strive to become an 𝗘𝗱𝘂𝗽𝗿𝗲𝗻𝗲𝘂𝗿 and teach students important soft skills such as communication and content writing that'll enable them to stand out in whichever field they choose to. <br>
+
+        🎤As a 𝗟𝗲𝗮𝗱𝗲𝗿 with diverse roles, I enjoy managing teams, offering creative solutions and implementing new ideas. Whatever the scenario, I am someone who believes in doing the best we can and powering through it together. <br>
+
+        Always open to new roles and opportunities, let's connect and collaborate. I'm just one DM away!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🧠</div>
+          <h3>Deep Learning</h3>
+          <p>TensorFlow, PyTorch, Keras</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📊</div>
+          <h3>Data Analytics</h3>
+          <p> EDA, Power BI, Tableau, Excel </p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🗣️</div>
+          <h3> Python </h3>
+          <p> Libraries: Panda, Numpy, Matplotlib, OpenCV, YOLO, Spacy, Tensorflow, Keras </p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">👁️</div>
+          <h3> Data Science</h3>
+          <p> ML Algorithms, Computer Vision, NLP </p>
+        </div>
+                <div class="skill-card">
+          <div class="skill-icon">👁️</div>
+          <h3> Agentic AI </h3>
+          <p> Relevance.ai, LLMs </p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="card-grid">
+        <div class="project-card">
+          <h3>PLANT PAL</h3>
+          <p> Created a Plant Disease Detection System using Computer Vision, Accuracy > 85%</p>
+          <p><strong>Tech:</strong> Python Libraries, Colab, ML </p>
+        </div>
+        <div class="project-card">
+          <h3> TRACK & TRACE </h3>
+          <p> Created a Blockchain-Based solution + Website using IoT, ML, Django and Sensors to track shipments 24/7 and notify organizations in the case of tampering of the shipments </p>
+          <p><strong> SIH 2024 Winning Project </strong> </p>
+        </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Tejasvi R A Portfolio | Let's build the future together </p>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic Neural Network Generator
+    document.addEventListener('DOMContentLoaded', () => {
+      const neuralNetwork = document.getElementById('neuralNetwork');
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      // Create neurons
+      for (let i = 0; i < 25; i++) {
+        const neuron = document.createElement('div');
+        neuron.className = 'neuron';
+        neuron.style.left = `${Math.random() * width}px`;
+        neuron.style.top = `${Math.random() * height}px`;
+        neuron.style.animationDelay = `${Math.random() * 3}s`;
+        neuralNetwork.appendChild(neuron);
+      }
+      
+      // Create connections
+      const neurons = document.querySelectorAll('.neuron');
+      neurons.forEach(neuron1 => {
+        neurons.forEach(neuron2 => {
+          if (Math.random() > 0.9) { // 10% chance of connection
+            const x1 = parseFloat(neuron1.style.left);
+            const y1 = parseFloat(neuron1.style.top);
+            const x2 = parseFloat(neuron2.style.left);
+            const y2 = parseFloat(neuron2.style.top);
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            connection.style.width = `${length}px`;
+            connection.style.left = `${x1}px`;
+            connection.style.top = `${y1}px`;
+            connection.style.transform = `rotate(${angle}deg)`;
+            connection.style.animationDelay = `${Math.random() * 5}s`;
+            neuralNetwork.appendChild(connection);
+          }
+        });
+      });
+
+      // Typewriter effect for console
+      const consoleText = document.getElementById('consoleText');
+      const phrases = [
+        "Initializing neural networks...",
+        "Loading training data...",
+        "Compiling model architecture...",
+        "Training complete! Accuracy: 98.7%",
+        "Ready for human interaction"
+      ];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      
+      function typeWriter() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+          consoleText.textContent = currentPhrase.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          consoleText.textContent = currentPhrase.substring(0, charIndex + 1);
+          charIndex++;
+        }
+        
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(typeWriter, 2000);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(typeWriter, 500);
+        } else {
+          setTimeout(typeWriter, isDeleting ? 50 : 100);
+        }
+      }
+      
+      setTimeout(typeWriter, 1000);
+
+      // Scroll animations
+      const sections = document.querySelectorAll('.section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'all 0.8s ease';
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
