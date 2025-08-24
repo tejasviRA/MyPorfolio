@@ -175,13 +175,19 @@
     }
 
     /* Skills */
-    .skills-grid {
+    /* .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1.5rem;
       margin: 3rem 0;
-    }
-
+    } */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 3rem 0;
+  justify-content: center; /* Centers the cards */
+}
     .skill-card {
       background: rgba(0, 139, 139, 0.1);
       border: 1px solid rgba(0, 206, 209, 0.3);
@@ -189,6 +195,7 @@
       padding: 1.5rem;
       text-align: center;
       transition: all 0.3s ease;
+  flex: 0 0 200px;
       backdrop-filter: blur(5px);
     }
 
@@ -255,6 +262,59 @@
       width: 50px;
       height: 2px;
       background: var(--accent);
+    }
+/* Timeline */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 20%; /* Add padding to create space for the line */
+}
+
+.timeline-line {
+  position: absolute;
+  left: 10%;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+  z-index: 1;
+}
+
+.timeline-items-container {
+  position: relative;
+  width: 100%;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.timeline-card {
+  background: rgba(0, 139, 139, 0.1);
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(5px);
+  position: relative;
+  left: 0;
+  width: 100%;
+  max-width: 600px;
+}
+    
+    /* Video Container */
+    .video-container {
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .video-container video {
+      width: 100%;
+      border: 1px solid var(--primary);
     }
 
     /* Footer */
@@ -326,11 +386,16 @@
           <div class="profile-glow"></div>
           <img src="C:\Users\Advita\Downloads\Untitled design (1).png" alt="Your Photo" class="profile-pic">
         </div>
-        <h1 class="tagline">I can speak to both humans and machines</h1>
-        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
-          Data Scientist | AI/ML Researcher | Edupreneur & Speaker
-        </p>
-        
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; gap: 15px;">
+<div style="text-align: center;">
+  <h5 class="tagline" style="display: block; white-space: nowrap; margin: 0 0 5px 0;">
+    I can speak to both humans and machines
+  </h5>
+  <p style="font-size: 1rem; margin: 0; display: block;">
+    Data Scientist | AI/ML Researcher | Edupreneur & Speaker
+  </p>
+</div>
+</div>
         <div class="console-effect">
           <p class="console-text" id="consoleText"></p>
         </div>
@@ -349,18 +414,8 @@
     <div class="container">
       <h2 class="section-title">About Me</h2>
       <div class="about-content">
-        <p style="text-align: left;">
-         "𝗗𝗼 𝘄𝗵𝗮𝘁 𝘆𝗼𝘂 𝗹𝗼𝘃𝗲 𝗮𝗻𝗱 𝘆𝗼𝘂'𝗹𝗹 𝗻𝗲𝘃𝗲𝗿 𝗵𝗮𝘃𝗲 𝘁𝗼 𝘄𝗼𝗿𝗸 𝗮 𝗱𝗮𝘆 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗹𝗶𝗳𝗲." <br>
-
-        I'm Tejasvi R.A., a passionate individual who makes a name for herself wherever she goes. <br>
-
-        📊 Having a technical background, I aim to become a 𝗗𝗮𝘁𝗮 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿 in the near future. Working on new projects and participating in Hackathons is a newfound interest of mine! <br>
-
-        👩🏽‍🏫 Moving to the bigger picture, I strive to become an 𝗘𝗱𝘂𝗽𝗿𝗲𝗻𝗲𝘂𝗿 and teach students important soft skills such as communication and content writing that'll enable them to stand out in whichever field they choose to. <br>
-
-        🎤As a 𝗟𝗲𝗮𝗱𝗲𝗿 with diverse roles, I enjoy managing teams, offering creative solutions and implementing new ideas. Whatever the scenario, I am someone who believes in doing the best we can and powering through it together. <br>
-
-        Always open to new roles and opportunities, let's connect and collaborate. I'm just one DM away!
+         <p>
+          I'm Tejasvi R.A.—a passionate tech enthusiast with a BE in CSE, on my way to becoming a Data Scientist. I love the thrill of turning raw data into powerful insights and watching models work the way they're meant to, from EDA to pipelines. <br> A natural leader, I thrive on solving problems creatively and guiding teams. <p> No matter the challenge, I believe in giving my best and winning together! </p> </p>
         </p>
       </div>
     </div>
@@ -373,28 +428,38 @@
       <div class="skills-grid">
         <div class="skill-card">
           <div class="skill-icon">🧠</div>
-          <h3>Deep Learning</h3>
-          <p>TensorFlow, PyTorch, Keras</p>
+          <h3> Python </h3>
+            <ul style="text-align: left;">
+            <li> Matplotlib & Scikit </li>
+            <li> Tensorflow, Keras </li>
+            <li> OpenCV, YOLO </li>
+            <li> Spacy </li>
+          </ul> 
         </div>
         <div class="skill-card">
           <div class="skill-icon">📊</div>
           <h3>Data Analytics</h3>
-          <p> EDA, Power BI, Tableau, Excel </p>
+          <ul style="text-align: left;">
+            <li> EDA </li>
+            <li> CSV Handling </li>
+            <li> Tableau & PowerBI</li>
+            <li> SQL & Pandas </li>
+            <li> Excel </li>
+          </ul> 
         </div>
         <div class="skill-card">
-          <div class="skill-icon">🗣️</div>
-          <h3> Python </h3>
-          <p> Libraries: Panda, Numpy, Matplotlib, OpenCV, YOLO, Spacy, Tensorflow, Keras </p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon">👁️</div>
-          <h3> Data Science</h3>
-          <p> ML Algorithms, Computer Vision, NLP </p>
+          <div class="skill-icon">✅</div>
+          <h3> Machine Learning </h3>
+          <ul style="text-align: left;">
+            <li> Model Building </li>
+            <li> Computer Vision </li>
+            <li> NLP </li>
+          </ul> 
         </div>
                 <div class="skill-card">
-          <div class="skill-icon">👁️</div>
+          <div class="skill-icon">🤖</div>
           <h3> Agentic AI </h3>
-          <p> Relevance.ai, LLMs </p>
+          <p style="text-align: left;"> Experimenting with AI automation tools—like autonomous agents (Relevance AI), workflow builders (n8n), conversation designers (Voiceflow) to optimize processes. </p>
         </div>
         </div>
       </div>
@@ -410,14 +475,82 @@
           <h3>PLANT PAL</h3>
           <p> Created a Plant Disease Detection System using Computer Vision, Accuracy > 85%</p>
           <p><strong>Tech:</strong> Python Libraries, Colab, ML </p>
+          <!-- Video Embed -->
+          <div class="video-container">
+            <video controls>
+              <source src="plant_pal_demo.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
         <div class="project-card">
           <h3> TRACK & TRACE </h3>
           <p> Created a Blockchain-Based solution + Website using IoT, ML, Django and Sensors to track shipments 24/7 and notify organizations in the case of tampering of the shipments </p>
           <p><strong> SIH 2024 Winning Project </strong> </p>
+          <!-- Video Embed -->
+          <div class="video-container">
+            <video controls>
+              <source src="track_trace_demo.mp4" type="video/mp4">
+           </video>
+          </div>
         </div>
+      </div>
+    </div>
   </section>
+<!-- Experience Timeline Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    
+    <div class="timeline">
+      <!-- Timeline line -->
+      <div class="timeline-line"></div>
+      
+      <div class="timeline-items-container">
+        <!-- Timeline items -->
+        <div class="timeline-item">
+          <!-- Infosys -->
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>Infosys Springboard Intern</h3>
+              <span>Dec 2024 - Jan 2025</span>
+            </div>
+            <p>
+              🌱 Built an AI plant disease detection system using Computer Vision (Python, TensorFlow, OpenCV).<br>
+              🤖 Achieved > 85% accuracy with Flask deployment for real-time predictions.
+            </p>
+          </div>
+        </div>
 
+        <div class="timeline-item">
+          <!-- EAI -->
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>EAI - AI for Research Intern</h3>
+              <span>Jun - Jul 2025</span>
+            </div>
+            <p>
+              ☀️ Researched AI applications for biotech/market analysis.<br>
+              🔗 Orchestrated IIT-EAI collaboration for Climafix Summit 2025.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <!-- SRM -->
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <h3>SRM Research Intern</h3>
+              <span>Jul 2025 - Present</span>
+            </div>
+            <p>
+              🔍 Selected to contribute to cutting-edge ML/AI research projects with faculty guidance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   <footer>
     <div class="container">
       <p>© 2025 Tejasvi R A Portfolio | Let's build the future together </p>
